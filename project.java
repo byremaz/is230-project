@@ -68,7 +68,31 @@ public class project {
 
     }
 
-    private static void displayStations(Statement stmt) {
-    
+    private static void displayStations(Statement stmt){
+    ResultSet rs = null;
+    try {
+        rs = stmt.executeQuery("SELECT * FROM Station");
+
+        boolean hasData = false;
+        while (rs.next()){
+            System.out.println("\n--- Station Record ---");
+            System.out.println("Station ID    : " + rs.getInt("StationID"));
+            System.out.println("Name          : " + rs.getString("Name"));
+            System.out.println("Type          : " + rs.getString("Type"));
+            System.out.println("Street Name   : " + rs.getString("Street_Name"));
+            System.out.println("Postal Code   : " + rs.getString("Postal_code"));
+            System.out.println("Working Hours : " + rs.getString("Working_Hours"));
+            System.out.println("-----------------------------");
+            hasData = true;
+        }
+
+        if(!hasData){
+            System.out.println("No station records found in the database.");
+        }
+    } catch (SQLException e) {
+        System.out.println("Unable to retrieve station records.");
+        System.out.println("Reason: " + e.getMessage());
+}
+
     }
 }
