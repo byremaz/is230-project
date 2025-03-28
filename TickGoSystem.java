@@ -23,7 +23,7 @@ public class TickGoSystem {
                 System.out.print("Choose an operation: ");
                 
                 choice = input.nextInt();
-                input.nextLine(); // Consume leftover newline
+                input.nextLine(); 
 
                 switch (choice) {
                     case 1:
