@@ -23,7 +23,7 @@ public class TickGoSystem {
                 System.out.print("Choose an operation: ");
                 
                 choice = input.nextInt();
-                input.nextLine();
+                input.nextLine(); // Consume leftover newline
 
                 switch (choice) {
                     case 1:
@@ -99,16 +99,18 @@ public class TickGoSystem {
             	System.out.println("Station record inserted successfully!");
             } catch (SQLException e) {
             	System.out.println("Error inserting station record: " + e.getMessage());
-            }
+}
 
-            do {
+            
                 System.out.print("Insert another record? (Y/N): ");
                 choice = input.next().charAt(0);
                 input.nextLine(); 
-                if (choice != 'Y' && choice != 'y' && choice != 'N' && choice != 'n') {
-                    System.out.println("Invalid input! Please enter 'Y' for Yes or 'N' for No.");
+                while (choice != 'Y' && choice != 'y' && choice != 'N' && choice != 'n') {
+                    System.out.print("Invalid input! Please enter 'Y' for Yes or 'N' for No: ");
+                    choice = input.next().charAt(0);
+                    input.nextLine(); 
                 }
-            } while (choice != 'Y' && choice != 'y' && choice != 'N' && choice != 'n');
+             
             
         } while (choice == 'Y' || choice == 'y');
         
