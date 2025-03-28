@@ -23,7 +23,7 @@ public class TickGoSystem {
                 System.out.print("Choose an operation: ");
                 
                 choice = input.nextInt();
-                input.nextLine(); // Consume leftover newline
+                input.nextLine();
 
                 switch (choice) {
                     case 1:
@@ -91,6 +91,16 @@ public class TickGoSystem {
                 input.nextLine(); 
             }
             
+            String insertQuery = "INSERT INTO Station (Name, Type, Street_Name, Postal_code, Working_Hours) " +
+                    "VALUES ('" + name + "', '" + type + "', '" + streetName + "', '" + postalCode + "', '" + workingHours + "')";
+
+            try {
+            	stmt.executeUpdate(insertQuery);
+            	System.out.println("Station record inserted successfully!");
+            } catch (SQLException e) {
+            	System.out.println("Error inserting station record: " + e.getMessage());
+            }
+
             do {
                 System.out.print("Insert another record? (Y/N): ");
                 choice = input.next().charAt(0);
