@@ -12,7 +12,7 @@ public class TickGoSystem {
         String user = "root";
         String password = "";
         int choice;
-        
+        boolean isConnected= true;
 
         try {
             connection = DriverManager.getConnection(url, user, password);
@@ -36,7 +36,24 @@ public class TickGoSystem {
                         displayStations(stmt);
                         break;
                     case 3:
+                        isConnected= false;
                         System.out.println("Program terminated.");
+                        try{
+                            if (stmt != null) stmt.close();
+                            if (connection != null) connection.close();
+                        } catch(SQLException e) {
+                            System.out.println("Error while closing statement or connection: " + e.getMessage());
+                        } finally{
+                            try {
+                                if(connection != null && !connection.isClosed()) {
+                                    connection.close();
+                                    System.out.println("Database connection closed.");
+                                }
+                            } catch(SQLException e) {
+                                System.out.println("Error while ensuring connection is closed: " + e.getMessage());
+                            }
+                        }
+                        input.close();
                         break;
                     default:
                         System.out.println("Invalid input. Please choose 1, 2, or 3.");
