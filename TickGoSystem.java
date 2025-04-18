@@ -12,7 +12,6 @@ public class TickGoSystem {
         String user = "root";
         String password = "";
         int choice;
-        boolean isConnected= true;
 
         try {
             connection = DriverManager.getConnection(url, user, password);
@@ -36,7 +35,6 @@ public class TickGoSystem {
                         displayStations(stmt);
                         break;
                     case 3:
-                        isConnected= false;
                         System.out.println("Program terminated.");
                         try{
                             if (stmt != null) stmt.close();
